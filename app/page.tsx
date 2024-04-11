@@ -2,8 +2,12 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    "Welcome2"
-    </main>
+    <div>
+      Main Page
+      <div className="grid grid-flow-col gap-3">
+        <div className="bg-blue-400 col-span-1">Hero</div>
+        <div className="bg-red-400 col-span-1">Map</div>
+      </div>
+    </div>
   );
 }
