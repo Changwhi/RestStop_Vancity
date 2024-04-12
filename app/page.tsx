@@ -1,5 +1,5 @@
 import Image from "next/image";
-import  { getVancouverParkWashroomData, getVancouverPublicWashroomData} from "@/app/lib/washrooms/vancouver";
+import  { getVancouverParkWashroomData, getVancouverPublicWashroomData} from "@/lib/washrooms/vancouver";
 
 export default async function Home() {
   const data = await getVancouverParkWashroomData();
