@@ -73,7 +73,7 @@ export default function Home() {
                 Category 2
               </h3>
               <p className="hidden sm:block text-3xl text-center mt-2 text-slate-500 dark:text-slate-400">
-                Mobile mark
+                Map 🗺️
               </p>
               <p className="sm:hidden text-2xl text-center mt-2 text-slate-500 dark:text-slate-400">
                 Park Bathrooms
