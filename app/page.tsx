@@ -39,15 +39,16 @@ export default function Home() {
         >
           <article className="sm:w-1/2">
             <h2 className="max-w-md text-4xl font-bold text-center sm:text-5xl sm:text-left text-slate-900 dark:text-white">
-              Use This Application To Find the Nearest Public Bathroom 🚻🚽!
+              Find the Nearest Public 🚻🚽
             </h2>
-            <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
-              This Site uses the City of Vancouver&#39;s Open Portal API
+            <p className="max-w-md text-xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
+              This application uses the City of Vancouver&#39;s Open Portal API
             </p>
-            <p className="max-w-md text-2xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
+            <p className="max-w-md text-xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
               Powered by 🤚🏻WhiteHand Software
             </p>
           </article>
+          <Image width={300} height={300} src="/logo1.png" alt="Logo 1" />
         </section>
 
         <hr className="mx-auto bg-black dark:bg-white w-1/2" />
@@ -69,10 +70,10 @@ export default function Home() {
             </li>
             <li className="w-2/3 sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white dark:bg-black py-6 px-2 rounded-3xl shadow-xl">
               <h3 className="text-3xl text-center text-slate-900 dark:text-white">
-                Park
+                Category 2
               </h3>
               <p className="hidden sm:block text-3xl text-center mt-2 text-slate-500 dark:text-slate-400">
-                Park
+                Mobile mark
               </p>
               <p className="sm:hidden text-2xl text-center mt-2 text-slate-500 dark:text-slate-400">
                 Park Bathrooms
@@ -80,13 +81,13 @@ export default function Home() {
             </li>
             <li className="w-2/3 sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white dark:bg-black py-6 px-2 rounded-3xl shadow-xl">
               <h3 className="text-3xl text-center text-slate-900 dark:text-white">
-                Gas Stop
+                Category 3
               </h3>
               <p className="hidden sm:block text-3xl text-center mt-2 text-slate-500 dark:text-slate-400">
-                May not be open or free
+                Filter info
               </p>
               <p className="sm:hidden text-2xl text-center mt-2 text-slate-500 dark:text-slate-400">
-                Gas Stops and Private shops
+                Info
               </p>
             </li>
           </ul>
