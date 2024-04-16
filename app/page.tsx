@@ -1,10 +1,7 @@
-import Image from "next/image";
-import Map from "@/components/map";
-import { getVancouverPublicWashroomData } from "@/lib/washrooms/vancouver";
+import MapModule from "@/components/mapmodule";
+import MyButton from "@/components/myButton";
 
-export default async function Home() {
-  const data = await getVancouverPublicWashroomData();
-
+export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
       <header className="bg-teal-700 text-white sticky top-0 z-10">
@@ -43,21 +40,18 @@ export default async function Home() {
         >
           <article className="sm:w-1/2">
             <h2 className="max-w-md text-4xl font-bold text-center sm:text-5xl sm:text-left text-slate-900 dark:text-white">
-              Find the Nearest Public 🚻🚽
+              Find Nearest Public 🚻🚽
             </h2>
-            <p className="max-w-md text-xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
-              This application uses the City of Vancouver&#39;s Open Portal API
-            </p>
             <p className="max-w-md text-xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
               Powered by 🤚🏻WhiteHand Software
             </p>
             <div>
-              <Map washrooms={data} />
+              {/* Map Module Goes Here */}
+              <MapModule></MapModule>
             </div>
             <span className="flex justify-center">
-              <button className="bg-blue-500 hover:bg-blue-700 mt-4 text-white font-bold py-2 px-4 rounded">
-                Click Me
-              </button>
+              {/* TODO: Button works, transfer info to backend  */}
+              <MyButton></MyButton>
             </span>
           </article>
         </section>
