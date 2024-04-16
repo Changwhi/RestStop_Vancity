@@ -1,6 +1,10 @@
 import Image from "next/image";
+import Map from "@/components/map";
+import { getVancouverPublicWashroomData } from "@/lib/washrooms/vancouver";
 
 export default async function Home() {
+  const data = await getVancouverPublicWashroomData();
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
       <header className="bg-teal-700 text-white sticky top-0 z-10">
@@ -47,8 +51,15 @@ export default async function Home() {
             <p className="max-w-md text-xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
               Powered by 🤚🏻WhiteHand Software
             </p>
+            <div>
+              <Map washrooms={data} />
+            </div>
+            <span className="flex justify-center">
+              <button className="bg-blue-500 hover:bg-blue-700 mt-4 text-white font-bold py-2 px-4 rounded">
+                Click Me
+              </button>
+            </span>
           </article>
-          <Image width={300} height={300} src="/logo1.png" alt="Logo 1" />
         </section>
 
         <hr className="mx-auto bg-black dark:bg-white w-1/2" />
