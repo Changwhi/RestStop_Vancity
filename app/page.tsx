@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
       <header className="bg-teal-700 text-white sticky top-0 z-10">
