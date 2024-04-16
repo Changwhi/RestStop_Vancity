@@ -15,6 +15,7 @@ const getGeoLocation = () => {
 
         // Do something with the location data, e.g. display on a map
         console.log(`Latitude: ${lat}, longitude: ${lng}`);
+        alert(`Lat: ${lat}, Lng: ${lng}.`)
       },
       // Error callback function
       (error) => {
