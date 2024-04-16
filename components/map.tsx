@@ -96,5 +96,5 @@ export default function Map({ washrooms }: MapProps) {
     initMap();
   }, [washrooms]);
 
-  return <div style={{ height: "600px" }} ref={mapRef}></div>;
+  return <div style={{ height: "300px" }} ref={mapRef}></div>;
 }
