@@ -1,5 +1,4 @@
 import MapModule from "@/components/mapmodule";
-import MyButton from "@/components/myButton";
 
 export default function Home() {
   return (
@@ -49,10 +48,6 @@ export default function Home() {
               {/* Map Module Goes Here */}
               <MapModule></MapModule>
             </div>
-            <span className="flex justify-center">
-              {/* TODO: Button works, transfer info to backend  */}
-              <MyButton></MyButton>
-            </span>
           </article>
         </section>
 
