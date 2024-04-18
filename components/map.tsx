@@ -32,7 +32,36 @@ interface MapProps {
 }
 
 export default function Map({ washrooms }: MapProps) {
+  const [userLocation, setUserLocation] = useState([0, 0]);
   const mapRef = React.useRef<HTMLDivElement>(null);
+  const getGeoLocation = () => {
+    // Check if geolocation is supported by the browser
+    if ("geolocation" in navigator) {
+      // Prompt user for permission to access their location
+      navigator.geolocation.getCurrentPosition(
+        // Success callback function
+        (position) => {
+          // Get the user's latitude and longitude coordinates
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+
+          // Do something with the location data, e.g. display on a map
+          console.log(`Latitude: ${lat}, longitude: ${lng}`);
+          alert(`Lat: ${lat}, Lng: ${lng}.`);
+          setUserLocation([lat, lng]);
+        },
+        // Error callback function
+        (error) => {
+          // Handle errors, e.g. user denied location sharing permissions
+          console.error("Error getting user location:", error);
+        }
+      );
+    } else {
+      // Geolocation is not supported by the browser
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
   useEffect(() => {
     const initMap = async () => {
       const loader = new Loader({
@@ -51,6 +80,10 @@ export default function Map({ washrooms }: MapProps) {
         zoom: 12,
         mapId: "what_is_the_best_practice",
       };
+
+      if (userLocation[0] != 0 && userLocation[1] != 0) {
+        mapOptions.center = { lat: userLocation[0], lng: userLocation[1] };
+      }
 
       const infoWindow = new google.maps.InfoWindow({
         content: "",
@@ -84,17 +117,32 @@ export default function Map({ washrooms }: MapProps) {
           content: pinSvg,
         });
         marker.addListener("click", () => {
-            infoWindow.close();
+          infoWindow.close();
           infoWindow.setContent(
-            marker.title + "<br>" +
-            washroom.geo_point_2d.lat + ", " + washroom.geo_point_2d.lon 
+            marker.title +
+              "<br>" +
+              washroom.geo_point_2d.lat +
+              ", " +
+              washroom.geo_point_2d.lon
           );
           infoWindow.open(map, marker);
         });
       });
     };
     initMap();
-  }, [washrooms]);
+  }, [washrooms, userLocation]);
 
-  return <div style={{ height: "300px" }} ref={mapRef}></div>;
+  return (
+    <>
+      <div style={{ height: "300px" }} ref={mapRef}></div>
+      <span className="flex justify-center">
+        <button
+          onClick={getGeoLocation}
+          className="bg-blue-500 hover:bg-blue-700 mt-4 text-white font-bold py-2 px-4 rounded"
+        >
+          Click
+        </button>
+      </span>
+    </>
+  );
 }
