@@ -33,11 +33,18 @@ interface MapProps {
 
 export default function Map({ washrooms }: MapProps) {
   const [userLocation, setUserLocation] = useState([0, 0]);
+  const [buttonClicked, setButtonClicked] = useState(false); // to keep track of the button click status
   const mapRef = React.useRef<HTMLDivElement>(null);
+
+  /**
+   * TODO: make the function more atomic
+   * Currently, the function asks for user's permission to get geolocation data and
+   * uses setUserLocation function to change the marker in the map.
+   * In addition, the function also displays the result page.
+   */
   const getGeoLocation = () => {
     // Check if geolocation is supported by the browser
     if ("geolocation" in navigator) {
-      // Prompt user for permission to access their location
       navigator.geolocation.getCurrentPosition(
         // Success callback function
         (position) => {
@@ -45,10 +52,10 @@ export default function Map({ washrooms }: MapProps) {
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
 
-          // Do something with the location data, e.g. display on a map
           console.log(`Latitude: ${lat}, longitude: ${lng}`);
           alert(`Lat: ${lat}, Lng: ${lng}.`);
           setUserLocation([lat, lng]);
+          setButtonClicked(true);
         },
         // Error callback function
         (error) => {
@@ -143,6 +150,23 @@ export default function Map({ washrooms }: MapProps) {
           Click
         </button>
       </span>
+      {/* Conditionally render the result page with buttonClicked ternary operation */}
+      {buttonClicked && (
+        <>
+          <div className="text-cyan-500" id="result">
+            Result:
+            {/* TODO: Populate the list with nearby bathrooms */}
+          </div>
+          <span className="flex justify-center">
+            <button
+              onClick={() => setButtonClicked(!buttonClicked)}
+              className="bg-red-500 hover:bg-red-700 mt-4 text-white font-bold py-2 px-4 rounded"
+            >
+              Close
+            </button>
+          </span>
+        </>
+      )}
     </>
   );
 }
