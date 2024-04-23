@@ -1,0 +1,33 @@
+name: RestStop_Vancity_Project
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: echo "SITE_URL=${{secrets.SITE_URL}}" >> .env && echo "NEXT_PUBLIC_GOOGLE_MAP_API_KEY=${{secrets.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}}" >> .env
+      - name: Build docker image
+        run: docker build -t changwhioh/washroom2 .
+      - name: Login to docker hub
+        run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_TOKEN}}
+      - name: Publish image to docker hub
+        run: docker push changwhioh/washroom2:latest
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull changwhioh/washroom2:latest
+      - name: Delete old container
+        run: docker rm -f washroom2
+      - name: Run docker container
+        run: docker run -d -p 3000:3000 --name washroom2 changwhioh/washroom2
