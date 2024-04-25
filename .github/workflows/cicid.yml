@@ -16,10 +16,10 @@ jobs:
         run: echo "SITE_URL=${{secrets.SITE_URL}}" >> .env && echo "NEXT_PUBLIC_GOOGLE_MAP_API_KEY=${{secrets.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}}" >> .env
       - name: Build docker image
         run: docker build -t changwhioh/washroom2 .
+      - name: Check env value to figure out error(for token and id)
+        run: console.log(${{secrets.DOCKERHUB_TOKEN}}, ${{secrets.DOCKERHUB_USERNAME}})
       - name: Login to docker hub
         run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_TOKEN}} --password-stdin
-        run: console.log('hello')
-        run: console.log(${{secrets.DOCKERHUB_TOKEN}}, ${{secrets.DOCKERHUB_USERNAME}})
       - name: Publish image to docker hub
         run: docker push changwhioh/washroom2:latest
   
