@@ -19,7 +19,7 @@ jobs:
       - name: Check env value to figure out error(for token and id)
         run: echo "DOCKERHUB_TOKEN=${{secrets.DOCKERHUB_TOKEN}}, DOCKERHUB_USERNAME=${{secrets.DOCKERHUB_USERNAME}}"
       - name: Login to docker hub
-        run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_TOKEN}} --password-stdin
+        run: echo ${{secrets.DOCKERHUB_TOKEN}} | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
       - name: Publish image to docker hub
         run: docker push changwhioh/washroom2:latest
   
