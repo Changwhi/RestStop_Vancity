@@ -50,7 +50,7 @@ export async function getVancouverPublicWashroomData(): Promise<
     const responseData: PublicWashroomApiResponse = await response.json();
     return responseData.results;
   } catch (error) {
-    throw new Error(NAME_OF_THIS_COMPONENT + " : " + error);
+    throw new Error(NAME_OF_THIS_COMPONENT + ": " + error);
   }
 }
 
@@ -92,6 +92,6 @@ export async function getVancouverParkWashroomData(): Promise<ParkApiResponse> {
     console.log(responseData.results);
     return responseData;
   } catch (error: any) {
-    throw new Error(NAME_OF_THIS_COMPONENT + " : " + error.message);
+    throw new Error(NAME_OF_THIS_COMPONENT + ": " + error.message);
   }
 }
