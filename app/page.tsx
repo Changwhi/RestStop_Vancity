@@ -1,6 +1,6 @@
-import Image from "next/image";
+import MapModule from "@/components/mapmodule";
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
       <header className="bg-teal-700 text-white sticky top-0 z-10">
@@ -39,16 +39,16 @@ export default async function Home() {
         >
           <article className="sm:w-1/2">
             <h2 className="max-w-md text-4xl font-bold text-center sm:text-5xl sm:text-left text-slate-900 dark:text-white">
-              Find the Nearest Public 🚻🚽
+              Find Nearest Public 🚻🚽
             </h2>
-            <p className="max-w-md text-xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
-              This application uses the City of Vancouver&#39;s Open Portal API
-            </p>
             <p className="max-w-md text-xl mt-4 text-center sm:text-left text-slate-700 dark:text-slate-300">
               Powered by 🤚🏻WhiteHand Software
             </p>
+            <div>
+              {/* Map Module Goes Here */}
+              <MapModule></MapModule>
+            </div>
           </article>
-          <Image width={300} height={300} src="/logo1.png" alt="Logo 1" />
         </section>
 
         <hr className="mx-auto bg-black dark:bg-white w-1/2" />
