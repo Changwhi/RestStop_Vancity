@@ -2,14 +2,16 @@
 import openGoogleMapApp from "@/lib/openGoogleMapApp";
 import NavigateButtonIcon from "./icon/navigateButton";
 
-interface Pros {
+interface Position {
   lat: number;
   lon: number;
 }
 
-const NavigateButton = ({ lat, lon }: Pros) => {
+const NavigateButton = ({ Position }: { Position: Position }) => {
   return (
-    <button onClick={() => openGoogleMapApp({ lat: lat, lon: lon })}>
+    <button
+      onClick={() => openGoogleMapApp({ lat: Position.lat, lon: Position.lon })}
+    >
       <NavigateButtonIcon />
     </button>
   );
