@@ -157,30 +157,35 @@ export default function Map({ washrooms }: MapProps) {
       };
     };
   }
-  /**
-   * Note: for icon using
-   * npm install @fortawesome/free-solid-svg-icons
-   * npm i @fortawesome/react-fontawesome
-   */
+/**
+ * 
+ * 
+ * @param bathroom each bathroom object filtered from the function 
+ * @returns HTML div that displays individual bathroom and its information
+ */
   const BathroomCard: React.FC<BathroomCardProps> = ({ bathroom }) => {
     return (
       <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
-        <FontAwesomeIcon icon={faRestroom} className="icon" />
+        <FontAwesomeIcon icon={faRestroom} className="icon m-3" transform="grow-7" />
         <div className="flex flex-col">
           <h3>{bathroom.name}</h3>
           <p className="text-xs">{bathroom.address}</p>
         </div>
-        <div>
+        <div className="flex justify-end">
           <NavigateButton Position={bathroom.pos}></NavigateButton>
           {bathroom.status ? (
             <FontAwesomeIcon
               icon={faCircleCheck}
               style={{ color: "#0dc700" }}
+              className="icon m-4" //Location of status icon
+              transform="grow-11"
             />
           ) : (
             <FontAwesomeIcon
               icon={faCircleXmark}
               style={{ color: "#ff0000" }}
+              className="icon m-4" //Location of status icon
+              transform="grow-11"
             />
           )}
         </div>
@@ -224,8 +229,14 @@ export default function Map({ washrooms }: MapProps) {
       {buttonClicked && (
         <>
           <div className="text-white" id="result">
-            Result:
+            <span className="flex justify-center"><h3>Result</h3></span>
             {/* TODO: Populate the list with nearby bathrooms */}
+            <div id="description-bar" className="flex justify-around"> 
+              <span id="icon" className="mr-12"></span>{/* description bar spacing is here */}
+              <span id="bathroom-title">Washroom</span>
+              <span id="navigate">Navigate</span>
+              <span id="status">Status</span>
+            </div>
             <div id="searchResult" className="flex flex-col">
               {dummyData.map((item, index) => (
                 <BathroomCard key={index} bathroom={item} />
