@@ -1,7 +1,14 @@
 "use client";
 
+import {
+  faCircleCheck,
+  faCircleXmark,
+  faRestroom,
+} from "@fortawesome/free-solid-svg-icons";
 import { Loader } from "@googlemaps/js-api-loader";
 import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NavigateButton from "./navigateButton";
 
 interface PublicWashroomData {
   name: string;
@@ -140,22 +147,66 @@ export default function Map({ washrooms }: MapProps) {
   }, [washrooms, userLocation]);
 
   interface BathroomCardProps {
-    bathroom: string;
+    bathroom: {
+      name: string;
+      address: string;
+      status: boolean;
+      pos: {
+        lat: number;
+        lon: number;
+      };
+    };
   }
-
+  /**
+   * Note: for icon using
+   * npm install @fortawesome/free-solid-svg-icons
+   * npm i @fortawesome/react-fontawesome
+   */
   const BathroomCard: React.FC<BathroomCardProps> = ({ bathroom }) => {
     return (
-      <div>
-        <h2>{bathroom}</h2>
-        {/* Add more components or content here */}
+      <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
+        <FontAwesomeIcon icon={faRestroom} className="icon" />
+        <div className="flex flex-col">
+          <h3>{bathroom.name}</h3>
+          <p className="text-xs">{bathroom.address}</p>
+        </div>
+        <div>
+          <NavigateButton Position={bathroom.pos}></NavigateButton>
+          {bathroom.status ? (
+            <FontAwesomeIcon
+              icon={faCircleCheck}
+              style={{ color: "#0dc700" }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              style={{ color: "#ff0000" }}
+            />
+          )}
+        </div>
       </div>
     );
   };
 
   const dummyData = [
-    { bathroom1: "TEST1" },
-    { bathroom2: "TEST2" },
-    { bathroom3: "TEST3" },
+    {
+      name: "TEST1",
+      address: "123 STREET",
+      status: true,
+      pos: { lat: 12, lon: -13 },
+    },
+    {
+      name: "TEST2",
+      address: "456 STREET",
+      status: false,
+      pos: { lat: 0, lon: 0 },
+    },
+    {
+      name: "TEST3",
+      address: "789 STREET",
+      status: true,
+      pos: { lat: 43, lon: 20 },
+    },
   ];
 
   return (
@@ -172,12 +223,12 @@ export default function Map({ washrooms }: MapProps) {
       {/* Conditionally render the result page with buttonClicked ternary operation */}
       {buttonClicked && (
         <>
-          <div className="text-cyan-500" id="result">
+          <div className="text-white" id="result">
             Result:
             {/* TODO: Populate the list with nearby bathrooms */}
             <div id="searchResult" className="flex flex-col">
               {dummyData.map((item, index) => (
-                <BathroomCard key={index} bathroom={Object.values(item)[0]} />
+                <BathroomCard key={index} bathroom={item} />
               ))}
             </div>{" "}
           </div>
