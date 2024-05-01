@@ -1,19 +1,18 @@
 "use client";
 import openGoogleMapApp from "@/lib/openGoogleMapApp";
+import NavigateButtonIcon from "./icon/navigateButton";
 
-const NavigateButton = () => {
-    const openGoogleMapAppHandler = (lat: number, lon: number) => {
-        openGoogleMapApp({ lat: lat, lon: lon });
-    }
-    return (
-        <button
-            className="bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 px-4 py-2 rounded-md font-bold"
-            onClick={() => openGoogleMapAppHandler(37.7749, -122.4194)}
-        >
-            Navigate
-        </button>
-    );
-
+interface Pros {
+  lat: number;
+  lon: number;
 }
 
-export default NavigateButton
+const NavigateButton = ({ lat, lon }: Pros) => {
+  return (
+    <button onClick={() => openGoogleMapApp({ lat: lat, lon: lon })}>
+      <NavigateButtonIcon />
+    </button>
+  );
+};
+
+export default NavigateButton;
