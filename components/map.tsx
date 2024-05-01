@@ -139,6 +139,25 @@ export default function Map({ washrooms }: MapProps) {
     initMap();
   }, [washrooms, userLocation]);
 
+  interface BathroomCardProps {
+    bathroom: string;
+  }
+
+  const BathroomCard: React.FC<BathroomCardProps> = ({ bathroom }) => {
+    return (
+      <div>
+        <h2>{bathroom}</h2>
+        {/* Add more components or content here */}
+      </div>
+    );
+  };
+
+  const dummyData = [
+    { bathroom1: "TEST1" },
+    { bathroom2: "TEST2" },
+    { bathroom3: "TEST3" },
+  ];
+
   return (
     <>
       <div style={{ height: "300px" }} ref={mapRef}></div>
@@ -156,6 +175,11 @@ export default function Map({ washrooms }: MapProps) {
           <div className="text-cyan-500" id="result">
             Result:
             {/* TODO: Populate the list with nearby bathrooms */}
+            <div id="searchResult" className="flex flex-col">
+              {dummyData.map((item, index) => (
+                <BathroomCard key={index} bathroom={Object.values(item)[0]} />
+              ))}
+            </div>{" "}
           </div>
           <span className="flex justify-center">
             <button

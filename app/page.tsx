@@ -1,6 +1,10 @@
-import MapModule from "@/components/mapmodule";
+import NavigateButton from "@/components/navigateButton";
+import Map from "@/components/map";
+import { getVancouverPublicWashroomData } from "@/lib/washrooms/vancouver";
 
-export default function Home() {
+export default async function Home() {
+  const washroomsData= await getVancouverPublicWashroomData();
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
       <header className="bg-teal-700 text-white sticky top-0 z-10">
@@ -46,7 +50,7 @@ export default function Home() {
             </p>
             <div>
               {/* Map Module Goes Here */}
-              <MapModule></MapModule>
+              <Map washrooms={washroomsData}/>
             </div>
           </article>
         </section>
@@ -56,6 +60,11 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
             Bathrooms🚽
           </h2>
+          {washroomsData.map((washroom) => {
+            return (
+              <NavigateButton key={washroom.primaryind} lat={washroom.geo_point_2d.lat} lon={washroom.geo_point_2d.lon} />
+            )
+          })}
           <ul className="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
             <li className="w-2/3 sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white dark:bg-black py-6 px-2 rounded-3xl shadow-xl">
               <h3 className="text-3xl text-center text-slate-900 dark:text-white">
