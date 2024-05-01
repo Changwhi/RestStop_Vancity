@@ -1,7 +1,10 @@
-import MapModule from "@/components/mapmodule";
 import NavigateButton from "@/components/navigateButton";
+import Map from "@/components/map";
+import { getVancouverPublicWashroomData } from "@/lib/washrooms/vancouver";
 
-export default function Home() {
+export default async function Home() {
+  const washroomsData= await getVancouverPublicWashroomData();
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
       <header className="bg-teal-700 text-white sticky top-0 z-10">
@@ -47,7 +50,7 @@ export default function Home() {
             </p>
             <div>
               {/* Map Module Goes Here */}
-              <MapModule></MapModule>
+              <Map washrooms={washroomsData}/>
             </div>
           </article>
         </section>
