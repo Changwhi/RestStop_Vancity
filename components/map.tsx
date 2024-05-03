@@ -151,28 +151,33 @@ export default function Map({ washrooms }: MapProps) {
       name: string;
       address: string;
       status: boolean;
-      pos: {
-        lat: number;
-        lon: number;
-      };
+      lat: number;
+      lon: number;
     };
   }
-/**
- * 
- * 
- * @param bathroom each bathroom object filtered from the function 
- * @returns HTML div that displays individual bathroom and its information
- */
+  /**
+   *
+   *
+   * @param bathroom each bathroom object filtered from the function
+   * @returns HTML div that displays individual bathroom and its information
+   */
   const BathroomCard: React.FC<BathroomCardProps> = ({ bathroom }) => {
     return (
       <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
-        <FontAwesomeIcon icon={faRestroom} className="icon m-3" transform="grow-7" />
+        <FontAwesomeIcon
+          icon={faRestroom}
+          className="icon m-3"
+          transform="grow-7"
+        />
         <div className="flex flex-col">
           <h3>{bathroom.name}</h3>
           <p className="text-xs">{bathroom.address}</p>
         </div>
         <div className="flex justify-end">
-          <NavigateButton Position={bathroom.pos}></NavigateButton>
+          <NavigateButton
+            lat={bathroom.lat}
+            lon={bathroom.lon}
+          ></NavigateButton>
           {bathroom.status ? (
             <FontAwesomeIcon
               icon={faCircleCheck}
@@ -198,19 +203,22 @@ export default function Map({ washrooms }: MapProps) {
       name: "TEST1",
       address: "123 STREET",
       status: true,
-      pos: { lat: 12, lon: -13 },
+      lat: 12,
+      lon: -13,
     },
     {
       name: "TEST2",
       address: "456 STREET",
       status: false,
-      pos: { lat: 0, lon: 0 },
+      lat: 0,
+      lon: 0,
     },
     {
       name: "TEST3",
       address: "789 STREET",
       status: true,
-      pos: { lat: 43, lon: 20 },
+      lat: 43,
+      lon: 20,
     },
   ];
 
@@ -229,10 +237,13 @@ export default function Map({ washrooms }: MapProps) {
       {buttonClicked && (
         <>
           <div className="text-white" id="result">
-            <span className="flex justify-center"><h3>Result</h3></span>
+            <span className="flex justify-center">
+              <h3>Result</h3>
+            </span>
             {/* TODO: Populate the list with nearby bathrooms */}
-            <div id="description-bar" className="flex justify-around"> 
-              <span id="icon" className="mr-12"></span>{/* description bar spacing is here */}
+            <div id="description-bar" className="flex justify-around">
+              <span id="icon" className="mr-12"></span>
+              {/* description bar spacing is here */}
               <span id="bathroom-title">Washroom</span>
               <span id="navigate">Navigate</span>
               <span id="status">Status</span>
