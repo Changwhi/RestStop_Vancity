@@ -224,11 +224,11 @@ export default function Map({ washrooms }: MapProps) {
 
   return (
     <>
-      <div style={{ height: "300px" }} ref={mapRef}></div>
+      <div className="md:w-1/2" style={{ height: "50vh", width: "100%" }} ref={mapRef}></div>
       <span className="flex justify-center">
         <button
           onClick={getGeoLocation}
-          className="bg-blue-500 hover:bg-blue-700 mt-4 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 mt-4 text-default-text font-bold py-2 px-4 rounded"
         >
           Click
         </button>
@@ -236,7 +236,7 @@ export default function Map({ washrooms }: MapProps) {
       {/* Conditionally render the result page with buttonClicked ternary operation */}
       {buttonClicked && (
         <>
-          <div className="text-white" id="result">
+          <div className=" text-default-text" id="result">
             <span className="flex justify-center">
               <h3>Result</h3>
             </span>
@@ -257,7 +257,7 @@ export default function Map({ washrooms }: MapProps) {
           <span className="flex justify-center">
             <button
               onClick={() => setButtonClicked(!buttonClicked)}
-              className="bg-red-500 hover:bg-red-700 mt-4 text-white font-bold py-2 px-4 rounded"
+              className="bg-red-500 hover:bg-red-700 mt-4 text-default-text font-bold py-2 px-4 rounded"
             >
               Close
             </button>
