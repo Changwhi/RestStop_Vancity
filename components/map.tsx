@@ -9,6 +9,7 @@ import { Loader } from "@googlemaps/js-api-loader";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavigateButton from "./navigateButton";
+import { getClosestWashrooms } from "@/lib/washrooms/getClosestWashrooms";
 
 interface PublicWashroomData {
   name: string;
@@ -198,6 +199,34 @@ export default function Map({ washrooms }: MapProps) {
     );
   };
 
+  const BathroomCard1: React.FC<{key: string; washroom: PublicWashroomData}> = ( {washroom} ) => {
+    return (
+      <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
+        <FontAwesomeIcon
+          icon={faRestroom}
+          className="icon m-3"
+          transform="grow-7"
+        />
+        <div className="flex flex-col">
+          <h3>{washroom.name}</h3>
+          <p className="text-xs">{washroom.address}</p>
+        </div>
+        <div className="flex justify-end">
+          <NavigateButton
+            lat={washroom.geo_point_2d.lat}
+            lon={washroom.geo_point_2d.lon}
+          ></NavigateButton>
+            <FontAwesomeIcon
+              icon={faCircleCheck}
+              style={{ color: "#0dc700" }}
+              className="icon m-4" //Location of status icon
+              transform="grow-11"
+            />
+           
+        </div>
+      </div>
+    );
+  };
   const dummyData = [
     {
       name: "TEST1",
@@ -221,6 +250,9 @@ export default function Map({ washrooms }: MapProps) {
       lon: 20,
     },
   ];
+
+  const closestWashrooms = getClosestWashrooms({lat: userLocation[0], lon:userLocation[1]}, washrooms, 3);
+  
 
   return (
     <>
@@ -249,6 +281,9 @@ export default function Map({ washrooms }: MapProps) {
               <span id="status">Status</span>
             </div>
             <div id="searchResult" className="flex flex-col">
+              {closestWashrooms.map((bathroom) => (
+                <BathroomCard1 key={bathroom.primaryind} washroom={bathroom} />
+              ))}
               {dummyData.map((item, index) => (
                 <BathroomCard key={index} bathroom={item} />
               ))}
