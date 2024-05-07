@@ -256,7 +256,7 @@ export default function Map({ washrooms }: MapProps) {
 
   return (
     <>
-      <div className="md:w-1/2" style={{ height: "50vh", width: "100%" }} ref={mapRef}></div>
+      <div style={{ height: "50vh", width: "100%" }} ref={mapRef}></div>
       <span className="flex justify-center">
         <button
           onClick={getGeoLocation}
