@@ -77,7 +77,41 @@ const Navbar = () => {
         </div>
       </div>
       <div id="mobile-menu" className="sm:hidden">
-        <FontAwesomeIcon icon={faBars} className="icon mb-2"/>
+        <FontAwesomeIcon icon={faBars} className="icon mb-2" onClick={handleToggle}/>
+      </div>
+      <div
+        className={
+          toggleMenu
+            ? "show_animation bg-gray-400 text-white transition-all duration-500"
+            : "hidden_animation text-white transition-all duration-500"
+        }
+      >
+        <ul>
+          <li
+            className="hover:bg-gray-200 hover:text-black h-9 flex items-center cursor-pointer "
+            onClick={handleToggle}
+          >
+            <span className="px-4">Home</span>
+          </li>
+          <li
+            className="hover:bg-gray-200 hover:text-black h-9 flex items-center cursor-pointer"
+            onClick={handleToggle}
+          >
+            <span className="px-4">Bathrooms</span>
+          </li>
+          <li
+            className="hover:bg-gray-200 hover:text-black h-9 flex items-center cursor-pointer"
+            onClick={handleToggle}
+          >
+            <span className="px-4">About</span>
+          </li>
+          <li
+            className="hover:bg-gray-200 hover:text-black h-9 flex items-center cursor-pointer"
+            onClick={handleToggle}
+          >
+            <span className="px-4">LogIn | SignUp</span>
+          </li>
+        </ul>
       </div>
     </nav>
   );
