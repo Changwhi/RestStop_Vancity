@@ -10,17 +10,17 @@ export default async function Home() {
       <main className="mx-auto">
         <section
           id="hero"
-          className="md:flex-row min-w-64 flex flex-col justify-center items-center m-12 p-10 scroll-mt-40 rounded-lg border-2 border-white"
+          className="min-w-64 flex flex-col justify-center items-center m-2 p-2 scroll-mt-40 rounded-lg border-2 border-white md:flex-row "
         >
           <article className="md:w-1/2">
-            <h2 className="text-4xl font-bold text-center sm:text-5xl sm:text-center">
+            <h2 className="text-3xl font-bold text-center">
               Find Public Bathrooms 🚻
             </h2>
             <p className=" text-xl mt-4 text-center sm:text-center text-slate-700 dark:text-slate-300">
               Powered by 🤚🏻WhiteHand Software
             </p>
           </article>
-          <div className="m-10 size-3/5 min-w-64">
+          <div className="m-10 size-full min-w-64">
             {/* Map Module Goes Here */}
             <Map washrooms={washroomsData} />
           </div>
