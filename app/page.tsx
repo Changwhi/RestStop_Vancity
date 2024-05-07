@@ -10,7 +10,7 @@ export default async function Home() {
       <main className="mx-auto">
         <section
           id="hero"
-          className="min-w-64 flex flex-col justify-center items-center m-2 p-4 scroll-mt-40 rounded-lg border-2 border-white md:flex-row "
+          className="min-w-64 flex flex-col justify-center items-center m-2 p-4 scroll-mt-40 rounded-lg border-2 border-white sm:flex-row "
         >
           <article className="sm:w-1/2">
             <h2 className="text-3xl font-bold text-center">
