@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between bg-nav p-4">
       <div className="flex items-center space-x-4">
-        <span className=" text-default-text text-xl">RestStop Vancity 🚻</span>
+        <span className=" text-default-text text-base md:text-xl">RestStop Vancity 🚻</span>
         <Link href={"/"}>
           {/* HOME */}
           <div className="flex flex-col">
