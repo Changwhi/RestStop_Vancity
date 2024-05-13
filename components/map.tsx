@@ -10,6 +10,8 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavigateButton from "./navigateButton";
 import { getClosestWashrooms } from "@/lib/washrooms/getClosestWashrooms";
+import SearchButton from "./searchButton";
+import getCurrentLocation from "@/lib/getCurrentLocation";
 
 interface PublicWashroomData {
   name: string;
@@ -38,10 +40,14 @@ interface PublicWashroomData {
 interface MapProps {
   washrooms: PublicWashroomData[];
 }
+interface Position {
+  lat: number;
+  lng: number;
+}
 
 export default function Map({ washrooms }: MapProps) {
-  const [userLocation, setUserLocation] = useState([0, 0]);
-  const [buttonClicked, setButtonClicked] = useState(false); // to keep track of the button click status
+  const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
+  const [buttonClicked, setButtonClicked] = useState(false);
   const mapRef = React.useRef<HTMLDivElement>(null);
 
   /**
@@ -50,30 +56,12 @@ export default function Map({ washrooms }: MapProps) {
    * uses setUserLocation function to change the marker in the map.
    * In addition, the function also displays the result page.
    */
-  const getGeoLocation = () => {
-    // Check if geolocation is supported by the browser
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        // Success callback function
-        (position) => {
-          // Get the user's latitude and longitude coordinates
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
+  const searchButtonHandler = () => {
+    const currentLocation = getCurrentLocation();
 
-          console.log(`Latitude: ${lat}, longitude: ${lng}`);
-          alert(`Lat: ${lat}, Lng: ${lng}.`);
-          setUserLocation([lat, lng]);
-          setButtonClicked(true);
-        },
-        // Error callback function
-        (error) => {
-          // Handle errors, e.g. user denied location sharing permissions
-          console.error("Error getting user location:", error);
-        }
-      );
-    } else {
-      // Geolocation is not supported by the browser
-      console.error("Geolocation is not supported by this browser.");
+    if (currentLocation) {
+      setUserLocation({ lat: currentLocation.lat, lng: currentLocation.lng });
+      setButtonClicked(true);
     }
   };
 
@@ -156,50 +144,11 @@ export default function Map({ washrooms }: MapProps) {
       lon: number;
     };
   }
-  /**
-   *
-   *
-   * @param bathroom each bathroom object filtered from the function
-   * @returns HTML div that displays individual bathroom and its information
-   */
-  const BathroomCard: React.FC<BathroomCardProps> = ({ bathroom }) => {
-    return (
-      <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
-        <FontAwesomeIcon
-          icon={faRestroom}
-          className="icon m-3"
-          transform="grow-7"
-        />
-        <div className="flex flex-col">
-          <h3>{bathroom.name}</h3>
-          <p className="text-xs">{bathroom.address}</p>
-        </div>
-        <div className="flex justify-end">
-          <NavigateButton
-            lat={bathroom.lat}
-            lon={bathroom.lon}
-          ></NavigateButton>
-          {bathroom.status ? (
-            <FontAwesomeIcon
-              icon={faCircleCheck}
-              style={{ color: "#0dc700" }}
-              className="icon m-4" //Location of status icon
-              transform="grow-11"
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              style={{ color: "#ff0000" }}
-              className="icon m-4" //Location of status icon
-              transform="grow-11"
-            />
-          )}
-        </div>
-      </div>
-    );
-  };
 
-  const BathroomCard1: React.FC<{key: string; washroom: PublicWashroomData}> = ( {washroom} ) => {
+  const BathroomCard: React.FC<{
+    key: string;
+    washroom: PublicWashroomData;
+  }> = (washroom) => {
     return (
       <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
         <FontAwesomeIcon
@@ -216,55 +165,27 @@ export default function Map({ washrooms }: MapProps) {
             lat={washroom.geo_point_2d.lat}
             lon={washroom.geo_point_2d.lon}
           ></NavigateButton>
-            <FontAwesomeIcon
-              icon={faCircleCheck}
-              style={{ color: "#0dc700" }}
-              className="icon m-4" //Location of status icon
-              transform="grow-11"
-            />
-           
+          <FontAwesomeIcon
+            icon={faCircleCheck}
+            style={{ color: "#0dc700" }}
+            className="icon m-4" //Location of status icon
+            transform="grow-11"
+          />
         </div>
       </div>
     );
   };
-  const dummyData = [
-    {
-      name: "TEST1",
-      address: "123 STREET",
-      status: true,
-      lat: 12,
-      lon: -13,
-    },
-    {
-      name: "TEST2",
-      address: "456 STREET",
-      status: false,
-      lat: 0,
-      lon: 0,
-    },
-    {
-      name: "TEST3",
-      address: "789 STREET",
-      status: true,
-      lat: 43,
-      lon: 20,
-    },
-  ];
 
-  const closestWashrooms = getClosestWashrooms({lat: userLocation[0], lon:userLocation[1]}, washrooms, 3);
-  
+  const closestWashrooms = getClosestWashrooms(
+    { lat: userLocation[0], lon: userLocation[1] },
+    washrooms,
+    3
+  );
 
   return (
     <>
       <div style={{ height: "300px" }} ref={mapRef}></div>
-      <span className="flex justify-center">
-        <button
-          onClick={getGeoLocation}
-          className="bg-blue-500 hover:bg-blue-700 mt-4 text-white font-bold py-2 px-4 rounded"
-        >
-          Click
-        </button>
-      </span>
+      {<SearchButton onClick={getCurrentLocation} />}
       {/* Conditionally render the result page with buttonClicked ternary operation */}
       {buttonClicked && (
         <>
@@ -282,21 +203,10 @@ export default function Map({ washrooms }: MapProps) {
             </div>
             <div id="searchResult" className="flex flex-col">
               {closestWashrooms.map((bathroom) => (
-                <BathroomCard1 key={bathroom.primaryind} washroom={bathroom} />
-              ))}
-              {dummyData.map((item, index) => (
-                <BathroomCard key={index} bathroom={item} />
+                <BathroomCard key={bathroom.primaryind} washroom={bathroom} />
               ))}
             </div>{" "}
           </div>
-          <span className="flex justify-center">
-            <button
-              onClick={() => setButtonClicked(!buttonClicked)}
-              className="bg-red-500 hover:bg-red-700 mt-4 text-white font-bold py-2 px-4 rounded"
-            >
-              Close
-            </button>
-          </span>
         </>
       )}
     </>
