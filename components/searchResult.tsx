@@ -1,71 +1,40 @@
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NavigateButton from "./navigateButton";
-import {
-  faCircleCheck,
-  faRestroom,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faRestroom } from "@fortawesome/free-solid-svg-icons";
+import { PublicWashroomData, MapProps } from "@/types/washroom";
 
-interface PublicWashroomData {
-  name: string;
-  address: string;
-  type: string;
-  location: string;
-  summer_hours: string;
-  winter_hours: string;
-  wheel_access: string;
-  maintainer: string;
-  note: string;
-  geom: {
-    type: string;
-    coordinates: number[];
-  };
-  geo_local_area: string;
-  primaryind: string;
-  geo_point_2d: {
-    type: string;
-    coordinates: number[];
-    lat: number;
-    lon: number;
-  };
-}
-interface MapProps {
-  closestWashrooms: PublicWashroomData[];
-}
-
-
-  const BathroomCard: React.FC<{
-    key: string;
-    washroom: PublicWashroomData;
-  }> = ({washroom}) => {
-    return (
-      <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
-        <FontAwesomeIcon
-          icon={faRestroom}
-          className="icon m-3"
-          transform="grow-7"
-        />
-        <div className="flex flex-col">
-          <h3>{washroom.name}</h3>
-          <p className="text-xs">{washroom.address}</p>
-        </div>
-        <div className="flex justify-end">
-          <NavigateButton
-            lat={washroom.geo_point_2d.lat}
-            lon={washroom.geo_point_2d.lon}
-          ></NavigateButton>
-          <FontAwesomeIcon
-            icon={faCircleCheck}
-            style={{ color: "#0dc700" }}
-            className="icon m-4" //Location of status icon
-            transform="grow-11"
-          />
-        </div>
+const BathroomCard: React.FC<{
+  key: string;
+  washroom: PublicWashroomData;
+}> = ({ washroom }) => {
+  return (
+    <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
+      <FontAwesomeIcon
+        icon={faRestroom}
+        className="icon m-3"
+        transform="grow-7"
+      />
+      <div className="flex flex-col">
+        <h3>{washroom.name}</h3>
+        <p className="text-xs">{washroom.address}</p>
       </div>
-    );
-  };
+      <div className="flex justify-end">
+        <NavigateButton
+          lat={washroom.geo_point_2d.lat}
+          lon={washroom.geo_point_2d.lon}
+        ></NavigateButton>
+        <FontAwesomeIcon
+          icon={faCircleCheck}
+          style={{ color: "#0dc700" }}
+          className="icon m-4" //Location of status icon
+          transform="grow-11"
+        />
+      </div>
+    </div>
+  );
+};
 
-const SearchResult: React.FC<MapProps> = ({closestWashrooms}) => {
+const SearchResult: React.FC<MapProps> = ({ washrooms }) => {
   return (
     <>
       <div className="text-white" id="result">
@@ -81,7 +50,7 @@ const SearchResult: React.FC<MapProps> = ({closestWashrooms}) => {
           <span id="status">Status</span>
         </div>
         <div id="searchResult" className="flex flex-col">
-          {closestWashrooms.map((bathroom) => (
+          {washrooms.map((bathroom) => (
             <BathroomCard key={bathroom.primaryind} washroom={bathroom} />
           ))}
         </div>{" "}

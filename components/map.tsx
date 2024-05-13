@@ -6,34 +6,8 @@ import { getClosestWashrooms } from "@/lib/washrooms/getClosestWashrooms";
 import SearchButton from "./searchButton";
 import getCurrentLocation from "@/lib/getCurrentLocation";
 import SearchResult from "./searchResult";
+import { PublicWashroomData, MapProps } from "@/types/washroom";
 
-interface PublicWashroomData {
-  name: string;
-  address: string;
-  type: string;
-  location: string;
-  summer_hours: string;
-  winter_hours: string;
-  wheel_access: string;
-  maintainer: string;
-  note: string;
-  geom: {
-    type: string;
-    coordinates: number[];
-  };
-  geo_local_area: string;
-  primaryind: string;
-  geo_point_2d: {
-    type: string;
-    coordinates: number[];
-    lat: number;
-    lon: number;
-  };
-}
-
-interface MapProps {
-  washrooms: PublicWashroomData[];
-}
 
 
 export default function Map({ washrooms }: MapProps) {
@@ -136,7 +110,7 @@ export default function Map({ washrooms }: MapProps) {
       {<SearchButton onClick={searchButtonHandler} />}
       {/* Conditionally render the result page with buttonClicked ternary operation */}
       {buttonClicked && (
-        <SearchResult closestWashrooms={closestWashrooms} />
+        <SearchResult washrooms={closestWashrooms} />
       )}
     </>
   );

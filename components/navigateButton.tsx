@@ -1,13 +1,9 @@
 "use client";
 import openGoogleMapApp from "@/lib/openGoogleMapApp";
 import NavigateButtonIcon from "./icon/navigateButton";
+import { Coordinates } from "@/types/coordinate";
 
-interface Pros {
-  lat: number;
-  lon: number;
-}
-
-const NavigateButton = ({ lat, lon }: Pros) => {
+const NavigateButton = ({ lat, lon }: Coordinates) => {
   return (
     <button
       onClick={() => openGoogleMapApp({ lat: lat, lon: lon })}
