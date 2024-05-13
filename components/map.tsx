@@ -2,7 +2,6 @@
 
 import {
   faCircleCheck,
-  faCircleXmark,
   faRestroom,
 } from "@fortawesome/free-solid-svg-icons";
 import { Loader } from "@googlemaps/js-api-loader";
@@ -40,28 +39,29 @@ interface PublicWashroomData {
 interface MapProps {
   washrooms: PublicWashroomData[];
 }
-interface Position {
-  lat: number;
-  lng: number;
-}
+
 
 export default function Map({ washrooms }: MapProps) {
   const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [closestWashrooms, setCloasestWashrooms] = useState<
+    PublicWashroomData[]
+  >([]);
   const mapRef = React.useRef<HTMLDivElement>(null);
 
-  /**
-   * TODO: make the function more atomic
-   * Currently, the function asks for user's permission to get geolocation data and
-   * uses setUserLocation function to change the marker in the map.
-   * In addition, the function also displays the result page.
-   */
-  const searchButtonHandler = () => {
-    const currentLocation = getCurrentLocation();
-
-    if (currentLocation) {
+  const searchButtonHandler = async () => {
+    try {
+      const currentLocation = await getCurrentLocation();
       setUserLocation({ lat: currentLocation.lat, lng: currentLocation.lng });
       setButtonClicked(true);
+      const closestWashrooms = getClosestWashrooms(
+        { lat: userLocation.lat, lon: userLocation.lng },
+        washrooms,
+        3
+      );
+      setCloasestWashrooms(closestWashrooms);
+    } catch (error) {
+      console.error("Error getting current location:", error);
     }
   };
 
@@ -84,8 +84,8 @@ export default function Map({ washrooms }: MapProps) {
         mapId: "what_is_the_best_practice",
       };
 
-      if (userLocation[0] != 0 && userLocation[1] != 0) {
-        mapOptions.center = { lat: userLocation[0], lng: userLocation[1] };
+      if (userLocation.lat != 0 && userLocation.lat != 0) {
+        mapOptions.center = { lat: userLocation.lat, lng: userLocation.lng };
       }
 
       const infoWindow = new google.maps.InfoWindow({
@@ -148,7 +148,7 @@ export default function Map({ washrooms }: MapProps) {
   const BathroomCard: React.FC<{
     key: string;
     washroom: PublicWashroomData;
-  }> = (washroom) => {
+  }> = ({washroom}) => {
     return (
       <div className="flex justify-between rounded-lg space-x-4 border-2 p-2 m-2 border-white">
         <FontAwesomeIcon
@@ -176,16 +176,10 @@ export default function Map({ washrooms }: MapProps) {
     );
   };
 
-  const closestWashrooms = getClosestWashrooms(
-    { lat: userLocation[0], lon: userLocation[1] },
-    washrooms,
-    3
-  );
-
   return (
     <>
       <div style={{ height: "300px" }} ref={mapRef}></div>
-      {<SearchButton onClick={getCurrentLocation} />}
+      {<SearchButton onClick={searchButtonHandler} />}
       {/* Conditionally render the result page with buttonClicked ternary operation */}
       {buttonClicked && (
         <>
