@@ -1,9 +1,11 @@
 import NavigateButton from "@/components/navigateButton";
 import Map from "@/components/map";
 import { getVancouverPublicWashroomData } from "@/lib/washrooms/vancouver";
+import ContactUs from "@/components/contactUs";
+import Footer from "@/components/footer";
 
 export default async function Home() {
-  const washroomsData= await getVancouverPublicWashroomData();
+  const washroomsData = await getVancouverPublicWashroomData();
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
@@ -50,7 +52,7 @@ export default async function Home() {
             </p>
             <div>
               {/* Map Module Goes Here */}
-              <Map washrooms={washroomsData}/>
+              <Map washrooms={washroomsData} />
             </div>
           </article>
         </section>
@@ -62,8 +64,12 @@ export default async function Home() {
           </h2>
           {washroomsData.map((washroom) => {
             return (
-              <NavigateButton key={washroom.primaryind} lat={washroom.geo_point_2d.lat} lon={washroom.geo_point_2d.lon} />
-            )
+              <NavigateButton
+                key={washroom.primaryind}
+                lat={washroom.geo_point_2d.lat}
+                lon={washroom.geo_point_2d.lon}
+              />
+            );
           })}
           <ul className="list-none mx-auto my-12 flex flex-col sm:flex-row items-center gap-8">
             <li className="w-2/3 sm:w-5/6 flex flex-col items-center border border-solid border-slate-900 dark:border-gray-100 bg-white dark:bg-black py-6 px-2 rounded-3xl shadow-xl">
@@ -108,12 +114,13 @@ export default async function Home() {
           </h2>
         </section>
         <hr className="mx-auto bg-black dark:bg-white w-1/2" />
-        <section id="contact" className="p-6 my-12">
-          <h2 className="text-4xl font-bold text-center sm:text-5xl mb-6 text-slate-900 dark:text-white">
-            Contact Us📮
-          </h2>
+        <section id="contact" className="flex justify-center p-6 my-12">
+          {<ContactUs />}
         </section>
         <hr className="mx-auto bg-black dark:bg-white w-1/2" />
+        <section id="contact" className="flex justify-center p-6 my-12">
+          {<Footer />}
+        </section>
       </main>
     </div>
   );
