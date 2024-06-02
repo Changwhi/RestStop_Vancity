@@ -1,16 +1,25 @@
 "use client";
-
 import React, { useState } from "react";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const HEADER_TITLE = "RestStop Vancity";
   const HEADER_SUBTITLE1 = "Find My Washroom 🚽";
   const HEADER_SUBTITLE2 = "Testimonial 👨‍👩‍👧‍👦";
   const HEADER_SUBTITLE3 = "Contact 📬";
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleSectionClick = (sectionId: string) => {
+
+    const currentSection: any= document.getElementById(sectionId);
+    if (currentSection) {
+      currentSection.scrollIntoView({ behavior: "smooth" });
+    }
+    setMenuOpen(false);
   };
 
   return (
@@ -28,13 +37,25 @@ const Header = () => {
             &#9776;
           </button>
           <nav className="hidden md:block space-x-8 text-md" aria-label="main">
-            <a href="#rockets" className="hover:opacity-70">
+            <a
+              href="#"
+              className="hover:opacity-70"
+              onClick={() => handleSectionClick("map")}
+            >
               {HEADER_SUBTITLE1}
             </a>
-            <a href="#testimonial" className="hover:opacity-70">
+            <a
+              href="#"
+              className="hover:opacity-70"
+              onClick={() => handleSectionClick("testimonial")}
+            >
               {HEADER_SUBTITLE2}
             </a>
-            <a href="#contact" className="hover:opacity-70">
+            <a
+              href="#"
+              className="hover:opacity-70"
+              onClick={() => handleSectionClick("contact")}
+            >
               {HEADER_SUBTITLE3}
             </a>
           </nav>
@@ -46,7 +67,7 @@ const Header = () => {
         }`}
         aria-label="mobile"
       >
-          <div className="flex justify-end">
+        <div className="flex justify-end">
           <button className="text-4xl mb-4" onClick={toggleMenu}>
             &times;
           </button>
@@ -54,27 +75,24 @@ const Header = () => {
         <ul className="space-y-4">
           <li>
             <a
-              href="#rockets"
-              className="hover:opacity-70 block"
-              onClick={toggleMenu}
+              className="hover:opacity-70 hover:cursor-pointer block"
+              onClick={() => handleSectionClick("map")}
             >
               {HEADER_SUBTITLE1}
             </a>
           </li>
           <li>
             <a
-              href="#testimonial"
-              className="hover:opacity-70 block"
-              onClick={toggleMenu}
+              className="hover:opacity-70 hover:cursor-pointer block"
+              onClick={() => handleSectionClick("testimonial")}
             >
               {HEADER_SUBTITLE2}
             </a>
           </li>
           <li>
             <a
-              href="#contact"
-              className="hover:opacity-70 block"
-              onClick={toggleMenu}
+              className="hover:opacity-70 hover:cursor-pointer block"
+              onClick={() => handleSectionClick("contact")}
             >
               {HEADER_SUBTITLE3}
             </a>
