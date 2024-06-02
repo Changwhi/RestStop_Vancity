@@ -1,12 +1,12 @@
 import Map from "@/components/map";
-import { getVancouverPublicWashroomData } from "@/lib/washrooms/vancouver";
 import ContactUs from "@/components/contactUs";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import retrieveWashrooms from "@/lib/util/retrieveWashrooms";
 
 
 export default async function Home() {
-  const washroomsData = await getVancouverPublicWashroomData();
+  const washroomsData = await retrieveWashrooms();
   const HERO_TEXT1_1 = "Find your nearest";
   const HERO_TEXT1_2 = "washrooms near you.";
   const HERO_TEXT2 = "Testimonial 👨‍👩‍👧‍👦";
