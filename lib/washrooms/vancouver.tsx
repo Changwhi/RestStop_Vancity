@@ -55,7 +55,7 @@ export async function getVancouverPublicWashroomData(): Promise<
 }
 
 // For washroom at parks in vancouver
-interface ParkData {
+interface ParkWashroomData {
   parkid: number;
   name: string;
   location: string;
@@ -66,17 +66,17 @@ interface ParkData {
 
 interface ParkApiResponse {
   total_count: number;
-  results: ParkData[];
+  results: ParkWashroomData[];
 }
 
-export async function getVancouverParkWashroomData(): Promise<ParkApiResponse> {
+export async function getVancouverParkWashroomData(): Promise<ParkWashroomData[]> {
   // constants for text
   const NAME_OF_THIS_COMPONENT = "getVancouverParkWashroomData";
   const FAILED_FETCHING_DATA = "Failed to fetch data";
 
   try {
     const response = await fetch(
-      "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks-washrooms/records?limit=94",
+      "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/parks/records?limit=20&refine=washrooms%3A%22Y%22",
       {
         method: "GET",
         headers: {
@@ -89,8 +89,7 @@ export async function getVancouverParkWashroomData(): Promise<ParkApiResponse> {
     }
 
     const responseData: ParkApiResponse = await response.json();
-    console.log(responseData.results);
-    return responseData;
+    return responseData.results;
   } catch (error: any) {
     throw new Error(NAME_OF_THIS_COMPONENT + ": " + error.message);
   }
