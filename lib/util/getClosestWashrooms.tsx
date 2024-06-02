@@ -24,11 +24,11 @@ export function getClosestWashrooms(
   const washroomsWithDistance = washrooms.map(washroom => ({
     ...washroom,
     distance: calculateDistance(
+      userLocation,
       {
         lat: washroom.geo_point_2d.lat,
         lon: washroom.geo_point_2d.lon
-      },
-      userLocation
+      }
     )
   }));
 
