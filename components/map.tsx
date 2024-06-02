@@ -99,7 +99,7 @@ export default function Map({ washrooms }: MapProps) {
 
   return (
     <>
-      <div style={{ height: "300px" }} ref={mapRef}></div>
+      <div style={{ height: "600px" }} ref={mapRef}></div>
       {<SearchButton onClick={searchButtonHandler} />}
       {buttonClicked && (
         <SearchResult washrooms={closestWashrooms} />
