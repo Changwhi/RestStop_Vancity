@@ -14,8 +14,7 @@ const Header = () => {
   };
 
   const handleSectionClick = (sectionId: string) => {
-
-    const currentSection: any= document.getElementById(sectionId);
+    const currentSection = document.getElementById(sectionId);
     if (currentSection) {
       currentSection.scrollIntoView({ behavior: "smooth" });
     }
