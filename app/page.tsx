@@ -118,7 +118,7 @@ export default async function Home() {
           {<ContactUs />}
         </section>
         <hr className="mx-auto bg-black dark:bg-white w-1/2" />
-        <section id="contact" className="flex justify-center p-6 my-12">
+        <section id="contact" className="flex justify-center p-6">
           {<Footer />}
         </section>
       </main>
