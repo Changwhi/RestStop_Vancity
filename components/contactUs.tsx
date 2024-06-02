@@ -2,7 +2,7 @@ import Card from "./UI/card";
 import ManIcon from "./icon/manIcon";
 
 export default function ContactUs() {
-  const CONTACT_US = "Contact Us";
+  const CONTACT_US = "Contact Us 📬";
   const CONTACT_US_TEXT =
     "Let’s get this conversation started. Tell us a bit about yourself. We’ll get in touch as soon as we can.";
   const NAME = "Name: ";
