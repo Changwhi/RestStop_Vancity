@@ -20,6 +20,7 @@ export interface PublicWashroomData {
     lat: number;
     lon: number;
   };
+  distance: number;
 }
 
 export interface MapProps {
