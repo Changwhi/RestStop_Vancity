@@ -38,6 +38,7 @@ export default function Map({ washrooms }: MapProps) {
   };
 
   useEffect(() => {
+    console.log("count")
     const initMap = async () => {
       const loader = new Loader({
         apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
@@ -105,7 +106,7 @@ export default function Map({ washrooms }: MapProps) {
 
   return (
     <>
-      <div style={{ height: "600px" }} ref={mapRef}></div>
+      <section className="h-96" ref={mapRef}></section>
       <section id="result">
         {<SearchButton onClick={searchButtonHandler} />}
         {buttonClicked && <SearchResult washrooms={closestWashrooms} />}
