@@ -25,7 +25,7 @@ const Header = () => {
     <header className="bg-teal-700 text-white sticky top-0 z-10">
       <section className="max-w-4xl mx-auto p-3 flex justify-between items-center">
         <h1 className="text-lg md:text-xl">
-          <a href="/">{HEADER_TITLE}</a>
+          {HEADER_TITLE}
         </h1>
         <div>
           <button
