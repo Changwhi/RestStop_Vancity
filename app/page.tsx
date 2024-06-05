@@ -3,6 +3,7 @@ import ContactUs from "@/components/contactUs";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import retrieveWashrooms from "@/lib/util/retrieveWashrooms";
+import test from "@/lib/database/retrieveDataFromDB";
 
 
 export default async function Home() {
@@ -10,10 +11,12 @@ export default async function Home() {
   const HERO_TEXT1_1 = "Find your nearest";
   const HERO_TEXT1_2 = "washrooms near you.";
   const HERO_TEXT2 = "Testimonial 👨‍👩‍👧‍👦";
+      test();   
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-black dark:text-white">
+    <div className="min-h-screen bg-white dark:bg-black dark:text-white">
       <Header />
+      
       <main className="max-w-4xl mx-auto">
         <section id='map' className="flex-col my-3 justify-center p-3 scroll-mt-40">
           <article>
