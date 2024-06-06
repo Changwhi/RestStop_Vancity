@@ -1,30 +1,5 @@
-interface Coordinates {
-  lat: number;
-  lon: number;
-}
-interface PublicWashroomData {
-  name: string;
-  address: string;
-  type: string;
-  location: string;
-  summer_hours: string;
-  winter_hours: string;
-  wheel_access: string;
-  maintainer: string;
-  note: string;
-  geom: {
-    type: string;
-    coordinates: number[];
-  };
-  geo_local_area: string;
-  primaryind: string;
-  geo_point_2d: {
-    type: string;
-    coordinates: number[];
-    lat: number;
-    lon: number;
-  };
-}
+import { PublicWashroomData } from "@/types/washroom";
+import { Coordinates } from "@/types/coordinate";
 
 function calculateDistance(coord1: Coordinates, coord2: Coordinates): number {
   const R = 6371; // Radius of the earth in km
@@ -49,11 +24,11 @@ export function getClosestWashrooms(
   const washroomsWithDistance = washrooms.map(washroom => ({
     ...washroom,
     distance: calculateDistance(
+      userLocation,
       {
         lat: washroom.geo_point_2d.lat,
         lon: washroom.geo_point_2d.lon
-      },
-      userLocation
+      }
     )
   }));
 

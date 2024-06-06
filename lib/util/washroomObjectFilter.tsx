@@ -5,6 +5,7 @@ export default function filterWashroomObject(washrooms: any) {
   const filteredRasults = washrooms.map((washroom: any) => {
     // empty result object
     const filteredObject: { [key: string]: string } = {};
+    filteredObject["name"] = "No name";
     // filter name
     for (const key of namesToExtract) {
       if (washroom.hasOwnProperty(key)) {
@@ -14,9 +15,8 @@ export default function filterWashroomObject(washrooms: any) {
     // filter coordinates
     for (const key of coordinatesToExtract) {
       if (washroom.hasOwnProperty(key)) {
-        filteredObject["geo_point_2d"] = washroom[key];
+        filteredObject["geo_point_2d"] = washroom[key];          }
       }
-    }
     return Object.keys(filteredObject).length ? filteredObject : null;
   }).filter((item: any) => item !== null);
 
