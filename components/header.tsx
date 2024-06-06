@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 
 const Header = () => {
-  const HEADER_TITLE = "RestStop Vancity";
-  const HEADER_SUBTITLE1 = "Find My Washroom 🚽";
-  const HEADER_SUBTITLE2 = "Testimonial 👨‍👩‍👧‍👦";
-  const HEADER_SUBTITLE3 = "Contact 📬";
+  const HEADER_TITLE = "Washroom Finder";
+  const HEADER_SUBTITLE1 = "Find My Washroom";
+  const HEADER_SUBTITLE2 = "Testimonial";
+  const HEADER_SUBTITLE3 = "Contact";
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -22,11 +22,11 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-teal-700 text-white sticky top-0 z-10">
+    <header className="bg-white sticky top-0 z-10">
       <section className="max-w-4xl mx-auto p-3 flex justify-between items-center">
-        <h1 className="text-lg md:text-xl">
+        <button className="text-lg md:text-xl font-bold">
           {HEADER_TITLE}
-        </h1>
+        </button>
         <div>
           <button
             id="mobile-open-button"
@@ -35,38 +35,36 @@ const Header = () => {
           >
             &#9776;
           </button>
-          <nav className="hidden md:block space-x-8 text-md" aria-label="main">
-            <a
-              href="#"
-              className="hover:opacity-70"
+          <nav className="hidden md:block space-x-8 text-sm font-medium">
+            <button
+              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
               onClick={() => handleSectionClick("map")}
             >
               {HEADER_SUBTITLE1}
-            </a>
-            <a
-              href="#"
-              className="hover:opacity-70"
+            </button>
+            <button
+              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
               onClick={() => handleSectionClick("testimonial")}
             >
               {HEADER_SUBTITLE2}
-            </a>
-            <a
-              href="#"
-              className="hover:opacity-70"
+            </button>
+            <button
+              className="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300"
               onClick={() => handleSectionClick("contact")}
             >
               {HEADER_SUBTITLE3}
-            </a>
+            </button>
           </nav>
         </div>
       </section>
       <div
-        className={`fixed top-0 right-0 w-4/7 h-fit bg-teal-700 text-white z-20 p-3 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 w-4/7 h-fit border-x-2 border-y-2 border-gray-400 bg-white z-20 p-3 transform transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-label="mobile"
-      >
-        <div className="flex justify-end">
+      > 
+        <div className="flex justify-between items-center">
+          <h1>Menu</h1>
           <button className="text-4xl mb-4" onClick={toggleMenu}>
             &times;
           </button>
