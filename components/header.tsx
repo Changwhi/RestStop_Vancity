@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white sticky top-0 z-10">
+    <header className="sticky top-0 z-10 bg-inherit">
       <section className="max-w-4xl mx-auto p-3 flex justify-between items-center">
         <button className="text-lg md:text-xl font-bold">
           {HEADER_TITLE}
