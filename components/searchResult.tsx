@@ -9,7 +9,7 @@ const BathroomCard: React.FC<{
 }> = ({ washroom }) => {
   const UNIT = "km";
   return (
-    <section className="flex justify-between w-5/6 md:w-2/5 rounded-lg space-x-4 border-2 p-2 m-2 border-black dark:border-white">
+    <section className="flex justify-between w-5/6 md:w-3/5 rounded-lg space-x-4 border-2 p-2 m-2 border-black dark:border-white">
       <FontAwesomeIcon
         icon={faRestroom}
         className="icon m-3"
