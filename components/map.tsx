@@ -18,15 +18,27 @@ export default function Map({ washrooms }: MapProps) {
   const [loading, setLoading] = useState(true);
 
   const searchButtonHandler = async () => {
-    setLoading(true);
-    // Scroll to the search result section
-    const currentSection = document.getElementById("result");
-    if (currentSection) {
-      currentSection.scrollIntoView( { behavior: "smooth"});
-    }
-    // Get the user's current location
     try {
+      setLoading(true);
       const currentLocation = await getCurrentLocation();
+
+      // Scroll to the search result section
+      document.getElementById("result")?.scrollIntoView({ behavior: "smooth" });
+
+      const user_moved_condition1 =
+        currentLocation.lat <= currentLocation.lat + 0.0001 &&
+        currentLocation.lat >= currentLocation.lat - 0.0001;
+      const user_moved_condition2 =
+        currentLocation.lng <= currentLocation.lng + 0.0001 &&
+        currentLocation.lng >= currentLocation.lng - 0.0001;
+
+      // If the user has not moved, do nothing
+      if (buttonClicked && user_moved_condition1 && user_moved_condition2) {
+        setLoading(false);
+        return;
+      }
+
+      // Get the user's current location
       setUserLocation({ lat: currentLocation.lat, lng: currentLocation.lng });
       setButtonClicked(true);
       const closestWashrooms = getClosestWashrooms(
@@ -34,6 +46,7 @@ export default function Map({ washrooms }: MapProps) {
         washrooms,
         3
       );
+
       setCloasestWashrooms(closestWashrooms);
       setLoading(false);
     } catch (error) {
@@ -43,7 +56,6 @@ export default function Map({ washrooms }: MapProps) {
 
   useEffect(() => {
     setLoading(true);
-    console.log("count");
     const initMap = async () => {
       const loader = new Loader({
         apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY as string,
@@ -112,11 +124,15 @@ export default function Map({ washrooms }: MapProps) {
 
   return (
     <>
-        {loading && <Loading />}
-        {!loading && <section className="h-96" ref={mapRef}></section>}
+      {loading && <Loading />}
+      {!loading && <section className="h-96" ref={mapRef}></section>}
       <section id="result">
         {<SearchButton onClick={searchButtonHandler} />}
-        {buttonClicked && <SearchResult washrooms={closestWashrooms} />}
+        {buttonClicked && loading ? (
+          <Loading />
+        ) : (
+          <SearchResult washrooms={closestWashrooms} />
+        )}
       </section>
     </>
   );
