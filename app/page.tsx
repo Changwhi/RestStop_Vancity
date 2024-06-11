@@ -2,7 +2,7 @@ import Map from "@/components/map";
 import ContactUs from "@/components/contactUs";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import retrieveWashrooms from "@/lib/util/retrieveWashrooms";
+import retrieveWashrooms from "@/lib/washrooms/retrieveWashrooms";
 import Card from "@/components/UI/card";
 import Avatar from "@/components/UI/avatar";
 import Testimonial from "@/components/testimonial";

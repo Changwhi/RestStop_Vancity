@@ -1,9 +1,9 @@
 "use client";
 import { Loader } from "@googlemaps/js-api-loader";
 import React, { Suspense, useEffect, useState } from "react";
-import { getClosestWashrooms } from "@/lib/util/getClosestWashrooms";
+import { getClosestWashrooms } from "@/lib/washrooms/getClosestWashrooms";
 import SearchButton from "./searchButton";
-import getCurrentLocation from "@/lib/util/getCurrentLocation";
+import getCurrentLocation from "@/lib/washrooms/getCurrentLocation";
 import SearchResult from "./searchResult";
 import { PublicWashroomData, MapProps } from "@/types/washroom";
 import Loading from "./UI/loading";

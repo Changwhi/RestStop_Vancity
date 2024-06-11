@@ -1,5 +1,5 @@
 "use client";
-import openGoogleMapApp from "@/lib/util/openGoogleMapApp";
+import openGoogleMapApp from "@/lib/googleMap/openGoogleMapApp";
 import NavigateButtonIcon from "./icon/navigateButton";
 import { Coordinates } from "@/types/coordinate";
 
