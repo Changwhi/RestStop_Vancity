@@ -1,0 +1,18 @@
+{
+  "result": [
+    {
+      "name": "Royal Kwantlen Park",
+      "googlemapdest": {
+        "lat": 49.1913466,
+        "lon": -122.8490125
+      }
+    },
+    {
+      "name": "Royal Park",
+      "googlemapdest": {
+        "lon": -122.8792434,
+        "lat": 49.1889528
+      }
+    }
+  ]
+}
