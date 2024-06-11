@@ -18,7 +18,7 @@ export default function filterWashroomObject(washrooms: any) {
         filteredObject["geo_point_2d"] = washroom[key];          }
       }
     return Object.keys(filteredObject).length ? filteredObject : null;
-  }).filter((item: any) => item !== null);
+  })
 
   return filteredRasults;
 
