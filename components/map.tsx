@@ -16,28 +16,25 @@ export default function Map({ washrooms }: MapProps) {
   >([]);
   const mapRef = React.useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
+  const [searchLoading, setSearchLoading] = useState(false);
 
   const searchButtonHandler = async () => {
     try {
-      setLoading(true);
+      setSearchLoading(true);
       const currentLocation = await getCurrentLocation();
-
       // Scroll to the search result section
       document.getElementById("result")?.scrollIntoView({ behavior: "smooth" });
-
       const user_moved_condition1 =
         currentLocation.lat <= currentLocation.lat + 0.0001 &&
         currentLocation.lat >= currentLocation.lat - 0.0001;
       const user_moved_condition2 =
         currentLocation.lng <= currentLocation.lng + 0.0001 &&
         currentLocation.lng >= currentLocation.lng - 0.0001;
-
       // If the user has not moved, do nothing
       if (buttonClicked && user_moved_condition1 && user_moved_condition2) {
-        setLoading(false);
+        setSearchLoading(false);
         return;
       }
-
       // Get the user's current location
       setUserLocation({ lat: currentLocation.lat, lng: currentLocation.lng });
       setButtonClicked(true);
@@ -46,9 +43,8 @@ export default function Map({ washrooms }: MapProps) {
         washrooms,
         3
       );
-
+      setSearchLoading(false);
       setCloasestWashrooms(closestWashrooms);
-      setLoading(false);
     } catch (error) {
       console.error("Error getting current location:", error);
     }
@@ -125,14 +121,15 @@ export default function Map({ washrooms }: MapProps) {
   return (
     <>
       {loading && <Loading />}
-      {!loading && <section className="h-96" ref={mapRef}></section>}
+      {!loading && <section className=" mx-5 mb-10 h-96" ref={mapRef}></section>}
       <section id="result">
         {<SearchButton onClick={searchButtonHandler} />}
-        {buttonClicked && loading ? (
-          <Loading />
-        ) : (
-          <SearchResult washrooms={closestWashrooms} />
-        )}
+        {buttonClicked &&
+          (loading ? (
+            <Loading />
+          ) : (
+            <SearchResult washrooms={closestWashrooms} />
+          ))}
       </section>
     </>
   );
