@@ -15,11 +15,16 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@googlemaps/js-api-loader": "^1.16.6",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.10",
     "mysql2": "^3.10.0",
     "next": "14.1.4",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
     "sharp": "^0.33.3",
+    "simplex-noise": "^4.0.1",
+    "tailwind-merge": "^2.3.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
