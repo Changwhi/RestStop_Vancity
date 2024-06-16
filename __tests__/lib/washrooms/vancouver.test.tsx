@@ -1,4 +1,4 @@
-import { getVancouverPublicWashroomData } from '@/lib/washrooms/vancouver';
+import { getVancouverPublicWashroomData } from '@/lib/washrooms/vancouverData';
 
 describe('getVancouverPublicWashroomData', () => {
   beforeEach(() => {
