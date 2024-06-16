@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react';
+import { PinContainer } from './UI/pinContainer';
 
 type SearchButtonProps = {
   onClick: MouseEventHandler<HTMLButtonElement>; 
