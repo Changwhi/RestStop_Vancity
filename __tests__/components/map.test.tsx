@@ -13,6 +13,7 @@ describe("Map Component", () => {
     const washrooms = [
       {
         name: "Test Washroom",
+        distance: 0.5,
         address: "123 Test St",
         type: "Public",
         location: "Test Location",
@@ -36,6 +37,7 @@ describe("Map Component", () => {
       },
       {
         name: "Test Washroom",
+        distance: 0.5,
         address: "123 Test St",
         type: "Public",
         location: "Test Location",
