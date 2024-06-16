@@ -10,8 +10,9 @@ export default async function Home() {
   const washroomsData = await retrieveWashrooms();
 
   return (
-    <div className="min-h-screen overflow-hidden bg-slate-200 dark:bg-slate-800 dark:text-white">
+    <>
       <Header />
+    <div className="min-h-screen overflow-hidden bg-slate-200 dark:bg-slate-800 dark:text-white">
       <section className="flex flex-col justify-center items-center">
         <main className="max-w-4xl">
           <Hero />
@@ -22,5 +23,6 @@ export default async function Home() {
         </main>
       </section>
     </div>
+  </>
   );
 }
