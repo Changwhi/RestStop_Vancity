@@ -22,7 +22,8 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-10 bg-inherit">
+
+    <header className="sticky top-0 z-10 bg-inherit bg-slate-200 dark:bg-slate-800 dark:text-white">
       <section className="max-w-4xl mx-auto p-3 flex justify-between items-center">
         <button className="text-lg md:text-xl font-bold">
           {HEADER_TITLE}
@@ -58,7 +59,7 @@ const Header = () => {
         </div>
       </section>
       <div
-        className={`fixed top-0 right-0 w-4/7 h-fit border-x-2 border-y-2 border-gray-400 bg-white z-20 p-3 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 w-4/7 h-fit border-x-2 border-y-2 dark:bg-slate-700 border-gray-400 bg-white z-20 p-3 transform transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-label="mobile"
