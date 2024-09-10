@@ -4,6 +4,9 @@ const Hero = () => {
   return (
     <section id="map" className="flex-col my-3 justify-center p-3 scroll-mt-40">
       <article>
+        <p className="p-10 text-xl font-bold text-center  text-slate-900 dark:text-white">
+        🚧 Continuously adding new washroom locations across Metro Vancouver.
+        </p>
         <h1 className="text-2xl font-bold text-center sm:text-3xl text-slate-900 dark:text-white">
           {HERO_TEXT1_1}
         </h1>
