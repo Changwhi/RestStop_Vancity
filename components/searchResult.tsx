@@ -21,17 +21,17 @@ const BathroomCard: React.FC<{
         <PinContainer
           title="Go to this washroom"
         >
-          <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] sm:w-[50rem]  xl:w-[20rem] h-[8rem] ">
-            <h3 className="max-w-xs !pb-2 !m-0 font-bold  text-xl text-black dark:text-slate-100">
+          <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] sm:w-[20rem]  xl:w-[20rem] h-[4rem] ">
+            <h3 className="self-center max-w-xs !pb-2 !m-0 font-bold text-xl text-black dark:text-slate-100">
               {washroom.name}
             </h3>
-            <div className="text-base !m-0 !p-0 font-normal">
-              <span className="text-slate-500 ">
+            {/* <div className="text-base !m-0 !p-0 font-normal"> */}
+              {/* <span className="text-slate-500 ">
                 {washroom.distance.toFixed(2)}
                 {UNIT}
-              </span>
-            </div>
-            <div className="flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500" />
+              </span> */}
+            {/* </div> */}
+            {/* <div className="flex flex-1 w-full rounded-lg mt-7 bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500" /> */}
           </div>
         </PinContainer>
     </section>
@@ -43,7 +43,7 @@ const SearchResult: React.FC<MapProps> = ({ washrooms }) => {
     <>
       <section className="flex-col">
         <h3 className="text-2xl font-bold text-center p-5 pt-10">
-          Most closest washrooms
+          Closest washrooms
         </h3>
         <div id="searchResult" className="flex flex-col justify-start items-center xl:flex-row xl:justify-center xl:items-center">
           {washrooms.map((bathroom, index) => (
