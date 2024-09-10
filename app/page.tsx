@@ -17,8 +17,8 @@ export default async function Home() {
         <main className="max-w-4xl">
           <Hero />
           <Map washrooms={washroomsData} />
-          <Testimonial />
           <ContactUs />
+          <Testimonial />
           <Footer />
         </main>
       </section>
