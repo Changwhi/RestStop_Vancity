@@ -4,10 +4,10 @@ This project is a web application for finding public washrooms in Metro Vancouve
 
 ## Demo
 ### Find the closest washrooms 
-![Find washrooms](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGViNTc1dXNmb25neDlsbHExc2ZpdXR6YnNsZDI3b3VhZzZ6YTQ0cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dK9hwD2tqu6FxCx9lT/giphy.gif)
+![Find the closest washrooms](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExODNnN2Fld2l0Ym1sczRia2M5ZGV1YmxjbGNhNzJzcDB4MnhhMWd5ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ve5kRe8usYdkh58v3P/giphy.gif)
 
 ### Go to the washroom
-![Go to the washrrom](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExODNnN2Fld2l0Ym1sczRia2M5ZGV1YmxjbGNhNzJzcDB4MnhhMWd5ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ve5kRe8usYdkh58v3P/giphy.gif)
+![Go to the washrrom](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGViNTc1dXNmb25neDlsbHExc2ZpdXR6YnNsZDI3b3VhZzZ6YTQ0cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dK9hwD2tqu6FxCx9lT/giphy.gif)
 
 
 ## 🌟 Features
