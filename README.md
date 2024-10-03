@@ -1,6 +1,6 @@
 # 🚽 Metro Vancouver Public Washroom Finder
 
-LINK: https://washroomfinder.info/
+Link: https://washroomfinder.info/
 
 This project is a web application for finding public washrooms in Metro Vancouver using Google Maps.
 
